@@ -1,22 +1,11 @@
-
 from aiogram import F, Router, types
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 from keyboards.keyboards import keyboard_GM_0, keyboard_KL_1, keyboard_KL_2, keyboard_KL_3, keyboard_KL_4
 from lexicon.lexicon_ru import LEXICON_RU
-
+from to_files.to_files import write_to_file_message # подключение процедуры записи в файл
 
 router = Router()
-
-def write_to_file(path: str, message):
-    f = open(path, 'a')
-    try:
-        #print(dtn.strftime("%d-%m-%Y %H:%M"), '\tПользователь \t' + message.from_user.first_name, '\t' + str(message.from_user.username), '\t' + str(message.from_user.last_name), '\t' + str(message.from_user.id), '\tнаписал следующее: \t' + message.text + '\t', message.contact, file=f)
-        print(message, file=f)
-    except Exception:
-        print('Любая ошибка!', file=f)
-    f.close()
-#write_to_file('db.txt', message)
 
 # Этот хэндлер будет срабатывать на кнопку "/start"
 @router.message(CommandStart())
@@ -26,7 +15,7 @@ async def process_start_command(message: Message):
         text = f'Здравствуйте, {message.chat.first_name} ({message.chat.username})!, \nВыберите, что вас интересует. \n\nСмотрите кнопки ниже',
         reply_markup=keyboard_GM_0
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
 # Вернуться в меню «Кафетерий» льгот (предыдущая страница)
@@ -38,7 +27,7 @@ async def process_1_answer(message: Message):
         text='Кафетерий льгот',
         reply_markup=keyboard_KL_1
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 # 'btnKLB0': '<-- Вернуться в главное меню (главная страница)'
 @router.message(F.text == LEXICON_RU['btnKLB0'])
@@ -48,7 +37,7 @@ async def process_dog_answer(message: Message):
         text=LEXICON_RU['btnKLB0_txt'],
         reply_markup=keyboard_GM_0,
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 #todo попробовать сделать, чтоб клавиатура не съезжала на начал, а оставалась на месте после прокрутки и выбора кнопки.
 
@@ -73,7 +62,7 @@ async def process_dog_answer(message: types.Message):
         reply_markup=keyboard_KL_2,
         parse_mode='HTML'
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 #----- Получение льгот -> 13 кн. [2-й уровень] ----
 # KL кафетерий льгот 3_#
@@ -98,7 +87,7 @@ async def process_dog_answer(message: types.Message):
         reply_markup=keyboard_KL_3,
         parse_mode='HTML'
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 @router.message(F.text.in_({'Бланки заявлений, перечень клиник'}))
 async def process_dog_answer(message: types.Message):
@@ -108,7 +97,7 @@ async def process_dog_answer(message: types.Message):
         reply_markup=keyboard_KL_4,
         parse_mode='HTML'
     )
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 @router.message(F.text.in_({'Заявления на льготу «ДМС работника» (фото)',
                             'Заявления на льготу «ДМС дети до 18 (включительно) лет» (фото)',
@@ -119,7 +108,7 @@ async def process_dog_answer(message: types.Message):
                             }))
 async def process_dog_answer(message: types.Message):
     await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 
 @router.message(F.text.in_({'ДМС для работников - cписок мед. учреждений (PDF)',
                             'ДМС для детей работников - cписок мед. учреждений (PDF)',
@@ -127,5 +116,5 @@ async def process_dog_answer(message: types.Message):
                             }))
 async def process_dog_answer(message: types.Message):
     await message.answer_document(document=types.FSInputFile(LEXICON_RU[message.text]))
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
 

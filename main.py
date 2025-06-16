@@ -5,8 +5,8 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from handlers import other_handlers, user_handlers
 
-#TODO 01    Третья кнопка               ##done
-#TODO 02    massage в файл              ##done ### 1.Создать процедуру в отдельном файле-модуле. Подгружать в user и other handlers
+#TODO 01 #done  Третья кнопка
+#TODO 02 #done  massage в файл. Создать процедуру в отдельном файле-модуле. Подгружать в user и other handlers
 #TODO 03    Логгирование в файл отдельный от db.
 #TODO 04    "Ошибка" после выключения
 #TODO 05    Тесты
