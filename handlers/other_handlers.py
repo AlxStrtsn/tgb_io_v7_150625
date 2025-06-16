@@ -1,9 +1,10 @@
 from aiogram import Router
 from aiogram.types import Message
 from lexicon.lexicon_ru import LEXICON_RU
+from to_files.to_files import write_to_file_message
 
 router = Router()
-
+"""
 def write_to_file(path: str, message):
     f = open(path, 'a')
     try:
@@ -13,10 +14,11 @@ def write_to_file(path: str, message):
         print('Любая ошибка!', file=f)
     f.close()
 #write_to_file('db.txt', message)
+"""
 
 # Хэндлер для сообщений, которые не попали в другие хэндлеры
 @router.message()
 async def send_answer(message: Message):
     print(message)
     await message.answer(text=LEXICON_RU['other_answer'])
-    write_to_file('db.txt', message)
+    write_to_file_message('message.txt', message)
