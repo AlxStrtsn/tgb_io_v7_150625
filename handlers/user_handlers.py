@@ -9,8 +9,7 @@ router = Router()
 
 # Этот хэндлер будет срабатывать на кнопку "/start"
 @router.message(CommandStart())
-async def process_start_command(message: Message):
-#   print(message)
+async def start_command(message: Message):
     await message.answer(
         text = f'Здравствуйте, {message.chat.first_name} ({message.chat.username})!, \nВыберите, что вас интересует. \n\nСмотрите кнопки ниже',
         reply_markup=keyboard_GM_0
@@ -18,11 +17,10 @@ async def process_start_command(message: Message):
     write_to_file_message('message.txt', message)
 
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
-# Вернуться в меню «Кафетерий» льгот (предыдущая страница)
+# вернуться в меню «Кафетерий» льгот (предыдущая страница)
 @router.message(F.text.in_({'Кафетерий льгот',
                         '<- Вернуться в меню «Кафетерий» льгот (предыдущая страница)'}))
-async def process_1_answer(message: Message):
-    #    print(message)
+async def to_kl(message: Message):
     await message.answer(
         text='Кафетерий льгот',
         reply_markup=keyboard_KL_1
@@ -31,8 +29,7 @@ async def process_1_answer(message: Message):
 
 # 'btnKLB0': '<-- Вернуться в главное меню (главная страница)'
 @router.message(F.text == LEXICON_RU['btnKLB0'])
-async def process_dog_answer(message: Message):
-    #    print(message)
+async def to_gm(message: Message):
     await message.answer(
         text=LEXICON_RU['btnKLB0_txt'],
         reply_markup=keyboard_GM_0,
@@ -42,7 +39,7 @@ async def process_dog_answer(message: Message):
 #todo попробовать сделать, чтоб клавиатура не съезжала на начал, а оставалась на месте после прокрутки и выбора кнопки.
 
 # Хендлер для клавиатуры 1_2 уровня
-#async def process_dog_answer(message: Message):
+# GIK Общая информация о «Кафетерий»
 @router.message(F.text.in_({'Общая информация «Кафетерий»\n(доступ, выбор льгот, условия)',
                             'Период предоставления льгот «Кафетерий»',
                             'Кому доступен пакет льгот «Кафетерий»',
@@ -55,8 +52,7 @@ async def process_dog_answer(message: Message):
                             'Перечень льгот «Кафетерий»',
                             'Когда осуществляется выбор льгот',
                             'Перенос баллов «Кафетерий» в текущем году'}))
-async def process_dog_answer(message: types.Message):
-    #    print(message)
+async def to_gik(message: types.Message): # GIK Общая информация о «Кафетерий»
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_2,
@@ -67,6 +63,7 @@ async def process_dog_answer(message: types.Message):
 #----- Получение льгот -> 13 кн. [2-й уровень] ----
 # KL кафетерий льгот 3_#
 # Хендлер для клавиатуры "Получение льгот"
+# TLK Take ligot kafeteriy Получение льгот Кафетерий
 @router.message(F.text.in_({'Получение льгот',
                             'Льгота «Оплата стоимости питания работников»',
                             'Льгота «Оплата дополнительного образования работников»',
@@ -80,8 +77,7 @@ async def process_dog_answer(message: types.Message):
                             'Льгота «Материальная помощь к отпуску»',
                             'Баллы в подарок коллеге (1 раз/год)'
                             }))
-async def process_dog_answer(message: types.Message):
-    #    print(message)
+async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_3,
@@ -90,8 +86,7 @@ async def process_dog_answer(message: types.Message):
     write_to_file_message('message.txt', message)
 
 @router.message(F.text.in_({'Бланки заявлений, перечень клиник'}))
-async def process_dog_answer(message: types.Message):
-    #    print(message)
+async def to_blanks_button(message: types.Message):
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_4,
@@ -106,7 +101,7 @@ async def process_dog_answer(message: types.Message):
                             'Заявление на льготу «Материальная помощь к отпуску» (фото)',
                             'Заявления на льготу «Путевки» (фото)'
                             }))
-async def process_dog_answer(message: types.Message):
+async def to_blanks_photo(message: types.Message):
     await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
     write_to_file_message('message.txt', message)
 
@@ -114,7 +109,7 @@ async def process_dog_answer(message: types.Message):
                             'ДМС для детей работников - cписок мед. учреждений (PDF)',
                             'Бланки одним файлом (PDF)',
                             }))
-async def process_dog_answer(message: types.Message):
+async def to_blanks_pdf(message: types.Message):
     await message.answer_document(document=types.FSInputFile(LEXICON_RU[message.text]))
     write_to_file_message('message.txt', message)
 
