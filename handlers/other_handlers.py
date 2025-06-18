@@ -8,6 +8,5 @@ router = Router()
 # Хэндлер для сообщений, которые не попали в другие хэндлеры
 @router.message()
 async def send_answer(message: Message):
-    print(message)
-    await message.answer(text=LEXICON_RU['other_answer'])
     write_to_file_message('message.txt', message)
+    await message.answer(text=LEXICON_RU['other_answer'])
