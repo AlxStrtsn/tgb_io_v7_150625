@@ -5,7 +5,6 @@ from lexicon.lexicon_ru import LEXICON_RU
 btnKLB0 = KeyboardButton(text=LEXICON_RU['btnKLB0'])
 btnKLB1 = KeyboardButton(text=LEXICON_RU['btnKLB1'])
 
-
 # Создаём объекты кнопок. Кнопки главных кнопок. GM GeneralMenu
 button_GM_0_1 = KeyboardButton(text='Кафетерий льгот')  #0_1
 button_GM_0_2 = KeyboardButton(text='Помощь')           #0_2
@@ -29,7 +28,6 @@ keyboard_KL_1 = ReplyKeyboardMarkup(
     input_field_placeholder=LEXICON_RU['placeholder']
 )
 
-
 #----- Общая информация «Кафетерий»\n(доступ, выбор льгот, условия) -> 13 кн. [2-й уровень]  от 1-й кнопки----
 # KL кафетерий льгот 2_#
 button_kl_2_1 = KeyboardButton(text='Период предоставления льгот «Кафетерий»')
@@ -50,10 +48,7 @@ keyboard_KL_2 = ReplyKeyboardMarkup(keyboard=[[button_kl_2_1], [button_kl_2_2], 
                                              [btnKLB1], [btnKLB0]],
                                     input_field_placeholder=LEXICON_RU['placeholder'])
 
-
-
 #----- Получение льгот -> 13 кн. [2-й уровень]  от 2-й кнопки----
-
 # KL кафетерий льгот 3_#
 button_kl_3_1 = KeyboardButton(text='Льгота «Оплата стоимости питания работников»')
 button_kl_3_2 = KeyboardButton(text='Льгота «Оплата дополнительного образования работников»')
@@ -73,12 +68,7 @@ keyboard_KL_3 = ReplyKeyboardMarkup(keyboard=[[button_kl_3_1], [button_kl_3_2], 
                                              [btnKLB1], [btnKLB0]],
                                     input_field_placeholder=LEXICON_RU['placeholder'])
 
-
-
-
-
 #----- #btnKL3 Бланки заявлений, перечень клиник [2-й уровень] от 3-й кнопки ----
-
 # KL кафетерий льгот 4_#
 button_kl_4_1 = KeyboardButton(text='Заявления на льготу «ДМС работника» (фото)')
 button_kl_4_2 = KeyboardButton(text='Заявления на льготу «ДМС дети до 18 (включительно) лет» (фото)')
@@ -97,11 +87,11 @@ keyboard_KL_4 = ReplyKeyboardMarkup(keyboard=[[button_kl_4_1], [button_kl_4_2], 
 
 
 # Buttons back
-btnKLB_ = KeyboardButton(text='<- Вернуться в меню «Кафетерий» льгот (предыдущая страница)')
-btnKLB__ = KeyboardButton(text='<-- Вернуться в главное меню (главная страница)')
+#btnKLB_ = KeyboardButton(text='<- Вернуться в меню «Кафетерий» льгот (предыдущая страница)')
+#btnKLB__ = KeyboardButton(text='<-- Вернуться в главное меню (главная страница)')
 
 # KH кафетерий помощь
-button_kh_1 = KeyboardButton(text='Не видно всех кнопок или прокрутка меню')
-button_kh_2 = KeyboardButton(text='Не видно клавиатуры или меню с кнопками')
+#button_kh_1 = KeyboardButton(text='Не видно всех кнопок или прокрутка меню')
+#button_kh_2 = KeyboardButton(text='Не видно клавиатуры или меню с кнопками')
 #button_kh_3 = KeyboardButton(text='<-- Вернуться в главное меню (главная страница)')
 #btnKLB2

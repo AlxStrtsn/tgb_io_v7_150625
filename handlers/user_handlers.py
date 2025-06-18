@@ -16,6 +16,25 @@ async def start_command(message: Message):
     )
     write_to_file_message('message.txt', message)
 
+# Этот хэндлер будет срабатывать на кнопку "/no_button"
+@router.message(F.text.in_({'/help', 'Помощь'}))
+async def to_help(message: types.Message): # GIK Общая информация о «Кафетерий»
+    await message.answer(
+        text=LEXICON_RU[message.text],
+#        reply_markup=keyboard_KL_2,
+        parse_mode='HTML'
+    )
+    write_to_file_message('message.txt', message)
+
+
+
+# Этот хэндлер будет срабатывать на кнопку "/no_button"
+@router.message(F.text == '/no_button')
+async def to_blanks_photo(message: types.Message):
+    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+    write_to_file_message('message.txt', message)
+
+
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
 # вернуться в меню «Кафетерий» льгот (предыдущая страница)
 @router.message(F.text.in_({'Кафетерий льгот',
