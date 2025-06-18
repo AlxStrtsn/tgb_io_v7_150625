@@ -20,10 +20,12 @@ keyboard_GM_0 = ReplyKeyboardMarkup(
 button_kl_1_1 = KeyboardButton(text='Общая информация «Кафетерий»\n(доступ, выбор льгот, условия)')
 button_kl_1_2 = KeyboardButton(text='Получение льгот')
 button_kl_1_3 = KeyboardButton(text='Бланки заявлений, перечень клиник')
-#btnKLB0
 # Создаём клавиатуру КЛАВИАТУРУ КАФЕТЕРИЙ ЛЬГОТ KL_1-4
 keyboard_KL_1 = ReplyKeyboardMarkup(
-    keyboard=[[button_kl_1_1], [button_kl_1_2], [button_kl_1_3], [btnKLB0]],
+    keyboard=[[button_kl_1_1],
+              [button_kl_1_2],
+              [button_kl_1_3],
+              [btnKLB0]], #btnKLB0 # Кнопка возврата в главное меню - на первую страницу.
     resize_keyboard=True,
     input_field_placeholder=LEXICON_RU['placeholder']
 )
