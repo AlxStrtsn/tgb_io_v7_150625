@@ -3,6 +3,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from config_data.config import Config, load_config
 from handlers import other_handlers, user_handlers
 
 #TODO 01 #done  Третья кнопка Бланки.
@@ -44,11 +45,6 @@ from handlers import other_handlers, user_handlers
 # Инициализируем логгер
 logger = logging.getLogger(__name__)
 
-# ИНИЦИАЛИЗАЦИЯ БОТА
-f = open('.//gitignor//tok.txt', 'r')
-BOT_TOKEN = f.read()  # переменная, в которой будут содержаться необходимые функции (обработка и ответ на сообщения)
-f.close()
-
 async def main():
     # Конфигурируем логирование
     logging.basicConfig(
@@ -60,15 +56,17 @@ async def main():
     logger.info('Starting bot')
 
     # ИНИЦИАЛИЗАЦИЯ БОТА
- #   f = open('.//gitignor//tok.txt', 'r')
- #   BOT_TOKEN = f.read() # переменная, в которой будут содержаться необходимые функции (обработка и ответ на сообщения)
- #   f.close()
+    # Загружаем конфиг в переменную config
+    config: Config = load_config()
 
     # Создаём объекты бота и диспетчера
-    bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    bot = Bot(
+        token=config.tg_bot.token,
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML)
+    )
     dp = Dispatcher()
 
-    # Регистриуем роутеры в диспетчере
+    # Регистрируем роутеры в диспетчере
     dp.include_router(user_handlers.router)
     dp.include_router(other_handlers.router)
 
