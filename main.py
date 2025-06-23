@@ -40,6 +40,7 @@ from handlers import other_handlers, user_handlers
 #TODO 28 #done  Удалить с хендлеров parse_mode='HTML', т.к. прописано централизовано
 #TODO 29 #done  write_to_file_message('message.txt', message) Поставить перед await message.a...
 #TODO 30        Дизайн/оформление/"стрелки"/Русский язык/Подача и отображение информации/Информативность/Минимально-максимальная достаточность текстов
+#TODO 31        Тестирование хендлеров. Обёртка в logging.
 
 
 # Инициализируем логгер
@@ -48,12 +49,12 @@ logger = logging.getLogger(__name__)
 async def main():
     # Конфигурируем логирование
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format='%(filename)s:%(lineno)d #%(levelname)-8s '
            '[%(asctime)s] - %(name)s - %(message)s')
 
     # Выводим в консоль информацию о начале запуска бота
-    logger.info('Starting bot')
+    logger.debug('Starting bot')
 
     # ИНИЦИАЛИЗАЦИЯ БОТА
     # Загружаем конфиг в переменную config

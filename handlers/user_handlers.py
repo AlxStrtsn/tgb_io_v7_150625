@@ -1,3 +1,4 @@
+import logging
 from aiogram import F, Router, types
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
@@ -5,11 +6,14 @@ from keyboards.keyboards import keyboard_GM_0, keyboard_KL_1, keyboard_KL_2, key
 from lexicon.lexicon_ru import LEXICON_RU
 from to_files.to_files import write_to_file_message # подключение процедуры записи в файл
 
+logger = logging.getLogger(__name__)
+
 router = Router()
 
 # Этот хэндлер будет срабатывать на кнопку "/start"
 @router.message(CommandStart())
 async def start_command(message: Message):
+    logger.debug(f'Вошли в handler start => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text = f'<b>Здравствуйте, {message.chat.first_name} ({message.chat.username})! </b>, \n'
@@ -17,18 +21,23 @@ async def start_command(message: Message):
                f'Выберите, что вас интересует. \n\nСмотрите кнопки ниже.',
         reply_markup=keyboard_GM_0
     )
+    logger.debug(f'Вышли из handler start => id:{message.message_id}, text:{message.text}')
 
 # Этот хэндлер будет срабатывать на кнопку /help и Помощь
 @router.message(F.text.in_({'/help', 'Помощь'}))
 async def to_help(message: types.Message): # GIK Общая информация о «Кафетерий»
+    logger.debug(f'Вошли в handler help => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(text=LEXICON_RU[message.text])
+    logger.debug(f'Вышли из handler help => id:{message.message_id}, text:{message.text}')
 
 # Этот хэндлер будет срабатывать на кнопку "/no_button"
 @router.message(F.text == '/no_button')
 async def to_blanks_photo(message: types.Message):
+    logger.debug(f'Вошли в handler no_button => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+    logger.debug(f'Вышли из handler no_button => id:{message.message_id}, text:{message.text}')
 
 
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
@@ -36,30 +45,36 @@ async def to_blanks_photo(message: types.Message):
 @router.message(F.text.in_({'Кафетерий льгот',
                         '<- Вернуться в меню «Кафетерий» льгот (предыдущая страница)'}))
 async def to_kl(message: Message):
+    logger.debug(f'Вошли в handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text='Кафетерий льгот',
         reply_markup=keyboard_KL_1
     )
+    logger.debug(f'Вышли из handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:{message.message_id}, text:{message.text}')
 
 # 'btnKLB0': '<-- Вернуться в главное меню (главная страница)'
 @router.message(F.text == LEXICON_RU['btnKLB0'])
 async def to_gm(message: Message):
+    logger.debug(f'Вошли в handler btnKLB0 Вернуться в главное меню => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text=LEXICON_RU['btnKLB0_txt'],
         reply_markup=keyboard_GM_0,
     )
+    logger.debug(f'Вышли из handler btnKLB0 Вернуться в главное меню => id:{message.message_id}, text:{message.text}')
 
 # Хендлер для клавиатуры 1_2 уровня
 # GIK Общая информация о «Кафетерий»
 @router.message(F.text == 'Общая информация «Кафетерий»\n(доступ, выбор льгот, условия)')
 async def to_gik(message: types.Message): # GIK Общая информация о «Кафетерий»
+    logger.debug(f'Вошли в handler Общая информация «Кафетерий» (доступ, выбор льгот, условия) => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_2,
     )
+    logger.debug(f'Вышли из handler Общая информация «Кафетерий» (доступ, выбор льгот, условия) => id:{message.message_id}, text:{message.text}')
 
 @router.message(F.text.in_({'Общая информация «Кафетерий»\n(доступ, выбор льгот, условия)',
                             'Период предоставления льгот «Кафетерий»',
@@ -74,8 +89,10 @@ async def to_gik(message: types.Message): # GIK Общая информация 
                             'Когда осуществляется выбор льгот',
                             'Перенос баллов «Кафетерий» в текущем году'}))
 async def to_gik(message: types.Message): # GIK Общая информация о «Кафетерий»
+    logger.debug(f'Вошли в handler keyboard_KL_2 -> Общая информация «Кафетерий» (доступ, выбор льгот, условия) [список...] => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(text=LEXICON_RU[message.text])
+    logger.debug(f'Вышли из handler keyboard_KL_2 -> Общая информация «Кафетерий» (доступ, выбор льгот, условия) [список...] => id:{message.message_id}, text:{message.text}')
 
 
 #----- Получение льгот -> 13 кн. [2-й уровень] ----
@@ -84,11 +101,13 @@ async def to_gik(message: types.Message): # GIK Общая информация 
 # TLK Take ligot kafeteriy Получение льгот Кафетерий
 @router.message(F.text == 'Получение льгот')
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+    logger.debug(f'Вошли в handler Получение льгот => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_3,
     )
+    logger.debug(f'Вышли из handler Получение льгот => id:{message.message_id}, text:{message.text}')
 
 @router.message(F.text.in_({'Получение льгот',
                             'Льгота «Оплата стоимости питания работников»',
@@ -104,16 +123,20 @@ async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получ�
                             'Баллы в подарок коллеге (1 раз/год)'
                             }))
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(text=LEXICON_RU[message.text])
+    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] => id:{message.message_id}, text:{message.text}')
 
 @router.message(F.text.in_({'Бланки заявлений, перечень клиник'}))
 async def to_blanks_button(message: types.Message):
+    logger.debug(f'Вошли в handler Бланки заявлений, перечень клиник => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_4,
     )
+    logger.debug(f'Вышли из handler Бланки заявлений, перечень клиник => id:{message.message_id}, text:{message.text}')
 
 
 @router.message(F.text.in_({'Заявления на льготу «ДМС работника» (фото)',
@@ -124,13 +147,17 @@ async def to_blanks_button(message: types.Message):
                             'Заявления на льготу «Путевки» (фото)'
                             }))
 async def to_blanks_photo(message: types.Message):
+    logger.debug(f'Вошли в handler keyboard_KL_4 -> фото [...] => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+    logger.debug(f'Вышли из handler keyboard_KL_4 -> фото [...] => id:{message.message_id}, text:{message.text}')
 
 @router.message(F.text.in_({'ДМС для работников - cписок мед. учреждений (PDF)',
                             'ДМС для детей работников - cписок мед. учреждений (PDF)',
                             'Бланки одним файлом (PDF)',
                             }))
 async def to_blanks_pdf(message: types.Message):
+    logger.debug(f'Вошли в handler keyboard_KL_4 -> pdf [...] => id:{message.message_id}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer_document(document=types.FSInputFile(LEXICON_RU[message.text]))
+    logger.debug(f'Вышли из handler keyboard_KL_4 -> pdf [...] => id:{message.message_id}, text:{message.text}')
