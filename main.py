@@ -1,5 +1,8 @@
 import logging
 import asyncio
+from codecs import StreamWriter
+from logging import FileHandler, DEBUG, ERROR, INFO, StreamHandler
+
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -45,13 +48,23 @@ from handlers import other_handlers, user_handlers
 
 # Инициализируем логгер
 logger = logging.getLogger(__name__)
+#FORMAT = '%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s'
+#file_handler = FileHandler("data.log")
 
 async def main():
+    # Конфигурироавние записи в файл
+    file_handler = FileHandler("data.log")
+    file_handler.setLevel(DEBUG)
+    console = StreamHandler()
+    console.setLevel(INFO)
+
     # Конфигурируем логирование
     logging.basicConfig(
         level=logging.DEBUG,
         format='%(filename)s:%(lineno)d #%(levelname)-8s '
-           '[%(asctime)s] - %(name)s - %(message)s')
+           '[%(asctime)s] - %(name)s - %(message)s',
+        handlers = [file_handler, console]
+    )
 
     # Выводим в консоль информацию о начале запуска бота
     logger.debug('Starting bot')

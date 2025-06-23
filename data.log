@@ -1,0 +1,25 @@
+main.py:67 #DEBUG    [2025-06-23 16:24:46,028] - __main__ - Starting bot
+dispatcher.py:566 #INFO     [2025-06-23 16:24:46,737] - aiogram.dispatcher - Start polling
+dispatcher.py:363 #INFO     [2025-06-23 16:24:46,858] - aiogram.dispatcher - Run polling for bot @NameTB2_bot id=5839544850 - 'NameTB2'
+user_handlers.py:16 #DEBUG    [2025-06-23 16:25:04,489] - handlers.user_handlers - Вошли в handler start => id:3302, text:/start
+user_handlers.py:24 #DEBUG    [2025-06-23 16:25:04,948] - handlers.user_handlers - Вышли из handler start => id:3302, text:/start
+dispatcher.py:172 #INFO     [2025-06-23 16:25:04,948] - aiogram.event - Update id=619558725 is handled. Duration 459 ms by bot id=5839544850
+user_handlers.py:29 #DEBUG    [2025-06-23 16:25:26,947] - handlers.user_handlers - Вошли в handler help => id:3304, text:Помощь
+user_handlers.py:32 #DEBUG    [2025-06-23 16:25:27,108] - handlers.user_handlers - Вышли из handler help => id:3304, text:Помощь
+dispatcher.py:172 #INFO     [2025-06-23 16:25:27,108] - aiogram.event - Update id=619558726 is handled. Duration 161 ms by bot id=5839544850
+dispatcher.py:594 #INFO     [2025-06-23 16:27:31,137] - aiogram.dispatcher - Polling stopped
+dispatcher.py:395 #INFO     [2025-06-23 16:27:31,394] - aiogram.dispatcher - Polling stopped for bot @NameTB2_bot id=5839544850 - 'NameTB2'
+main.py:70 #DEBUG    [2025-06-23 16:27:34,098] - __main__ - Starting bot
+dispatcher.py:566 #INFO     [2025-06-23 16:27:34,762] - aiogram.dispatcher - Start polling
+dispatcher.py:363 #INFO     [2025-06-23 16:27:34,884] - aiogram.dispatcher - Run polling for bot @NameTB2_bot id=5839544850 - 'NameTB2'
+dispatcher.py:594 #INFO     [2025-06-23 16:28:18,986] - aiogram.dispatcher - Polling stopped
+dispatcher.py:395 #INFO     [2025-06-23 16:28:19,244] - aiogram.dispatcher - Polling stopped for bot @NameTB2_bot id=5839544850 - 'NameTB2'
+main.py:70 #DEBUG    [2025-06-23 16:28:24,238] - __main__ - Starting bot
+dispatcher.py:566 #INFO     [2025-06-23 16:28:24,832] - aiogram.dispatcher - Start polling
+dispatcher.py:363 #INFO     [2025-06-23 16:28:24,956] - aiogram.dispatcher - Run polling for bot @NameTB2_bot id=5839544850 - 'NameTB2'
+user_handlers.py:29 #DEBUG    [2025-06-23 16:28:29,443] - handlers.user_handlers - Вошли в handler help => id:3307, text:Помощь
+user_handlers.py:32 #DEBUG    [2025-06-23 16:28:29,852] - handlers.user_handlers - Вышли из handler help => id:3307, text:Помощь
+dispatcher.py:172 #INFO     [2025-06-23 16:28:29,852] - aiogram.event - Update id=619558728 is handled. Duration 409 ms by bot id=5839544850
+user_handlers.py:48 #DEBUG    [2025-06-23 16:29:11,914] - handlers.user_handlers - Вошли в handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:3309, text:Кафетерий льгот
+user_handlers.py:54 #DEBUG    [2025-06-23 16:29:12,086] - handlers.user_handlers - Вышли из handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:3309, text:Кафетерий льгот
+dispatcher.py:172 #INFO     [2025-06-23 16:29:12,086] - aiogram.event - Update id=619558729 is handled. Duration 173 ms by bot id=5839544850
