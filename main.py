@@ -43,13 +43,13 @@ from handlers import other_handlers, user_handlers
 #TODO 28 #done  Удалить с хендлеров parse_mode='HTML', т.к. прописано централизовано
 #TODO 29 #done  write_to_file_message('message.txt', message) Поставить перед await message.a...
 #TODO 30        Дизайн/оформление/"стрелки"/Русский язык/Подача и отображение информации/Информативность/Минимально-максимальная достаточность текстов
-#TODO 31        Тестирование хендлеров. Обёртка в logging.
+#TODO 31 #done  Тестирование хендлеров. Обёртка в logging.
+#TODO 32        В помощи указать, что можно ввести текст (обратная связь тестировщика). !!сообщение
 
 
 # Инициализируем логгер
 logger = logging.getLogger(__name__)
 #FORMAT = '%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s'
-#file_handler = FileHandler("data.log")
 
 async def main():
     # Конфигурироавние записи в файл

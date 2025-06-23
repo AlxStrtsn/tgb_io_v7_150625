@@ -23,3 +23,5 @@ dispatcher.py:172 #INFO     [2025-06-23 16:28:29,852] - aiogram.event - Update i
 user_handlers.py:48 #DEBUG    [2025-06-23 16:29:11,914] - handlers.user_handlers - Вошли в handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:3309, text:Кафетерий льгот
 user_handlers.py:54 #DEBUG    [2025-06-23 16:29:12,086] - handlers.user_handlers - Вышли из handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) => id:3309, text:Кафетерий льгот
 dispatcher.py:172 #INFO     [2025-06-23 16:29:12,086] - aiogram.event - Update id=619558729 is handled. Duration 173 ms by bot id=5839544850
+dispatcher.py:594 #INFO     [2025-06-23 16:30:57,417] - aiogram.dispatcher - Polling stopped
+dispatcher.py:395 #INFO     [2025-06-23 16:30:57,676] - aiogram.dispatcher - Polling stopped for bot @NameTB2_bot id=5839544850 - 'NameTB2'
