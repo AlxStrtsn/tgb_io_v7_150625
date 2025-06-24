@@ -4,7 +4,7 @@ from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 from keyboards.keyboards import keyboard_GM_0, keyboard_KL_1, keyboard_KL_2, keyboard_KL_3, keyboard_KL_4
 from lexicon.lexicon_ru import LEXICON_RU
-from to_files.to_files import write_to_file_message # подключение процедуры записи в файл
+from to_files.to_files import write_to_file_message, write_to_file_testtext # подключение процедуры записи в файл
 
 logger = logging.getLogger(__name__)
 
@@ -40,13 +40,14 @@ async def to_blanks_photo(message: types.Message):
     logger.debug(f'Вышли из handler no_button => id:{message.message_id}, text:{message.text}')
 
 
-# Хендлер. !!сообщение
+# Хендлер. !!сообщение  Хендлер для "записи" теста от пользователей
 @router.message(F.text.startswith('!!'))
 async def to_test(message: types.Message):
     logger.debug(f'Вошли в handler !! => id:{message.message_id}, username:{message.chat.username}, first_name:{message.chat.first_name}, last_name:{message.chat.last_name}, text:{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(text=f'Ваше сообщение <b>{message.text}</b> записано. Спасибо!')
     logger.debug(f'Вошли в handler !! => id:{message.message_id}, username:{message.chat.username}, first_name:{message.chat.first_name}, last_name:{message.chat.last_name}, text:{message.text}')
+    write_to_file_testtext('testfromusers.txt', message) # запись в файл пользовательских сообщений по тесту
 
 
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
