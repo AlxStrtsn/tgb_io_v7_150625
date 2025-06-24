@@ -40,6 +40,15 @@ async def to_blanks_photo(message: types.Message):
     logger.debug(f'Вышли из handler no_button => id:{message.message_id}, text:{message.text}')
 
 
+# Хендлер. !!сообщение
+@router.message(F.text.startswith('!!'))
+async def to_test(message: types.Message):
+    logger.debug(f'Вошли в handler !! => id:{message.message_id}, username:{message.chat.username}, first_name:{message.chat.first_name}, last_name:{message.chat.last_name}, text:{message.text}')
+    write_to_file_message('message.txt', message)
+    await message.answer(text=f'Ваше сообщение <b>{message.text}</b> записано. Спасибо!')
+    logger.debug(f'Вошли в handler !! => id:{message.message_id}, username:{message.chat.username}, first_name:{message.chat.first_name}, last_name:{message.chat.last_name}, text:{message.text}')
+
+
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
 # вернуться в меню «Кафетерий» льгот (предыдущая страница)
 @router.message(F.text.in_({'Кафетерий льгот',
