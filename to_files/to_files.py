@@ -13,7 +13,13 @@ def write_to_file_testtext(path: str, message):
     f: TextIOWrapper
     try:
         f = open(path, 'a')
-        print(f'{message.date}\tid:\t{message.message_id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}', file=f)
+        print(f'date{message.date}\t'
+              f'message_id:\t{message.message_id}\t'
+              f'chat_id:\t{message.chat.id}\t'
+              f'username:\t{message.chat.username}\t'
+              f'first_name:\t{message.chat.first_name}\t'
+              f'last_name:\t{message.chat.last_name}\t'
+              f'text:\t{message.text}', file=f)
     except Exception as e:
         print(f'Ошибка при открытии файла в потоке message {message.message_id} : {e}')
     f.close()
