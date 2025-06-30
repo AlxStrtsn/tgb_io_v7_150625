@@ -32,21 +32,22 @@ keyboard_KL_1 = ReplyKeyboardMarkup(
 
 #----- Общая информация «Кафетерий»\n(доступ, выбор льгот, условия) -> 13 кн. [2-й уровень]  от 1-й кнопки----
 # KL кафетерий льгот 2_#
-button_kl_2_1 = KeyboardButton(text='Период предоставления льгот «Кафетерий»')
-button_kl_2_2 = KeyboardButton(text='Кому доступен пакет льгот «Кафетерий»')
-button_kl_2_3 = KeyboardButton(text='Для работников, находящихся в отпуске по беременности, родам, уходу за ребенком')
-button_kl_2_4 = KeyboardButton(text='Обязательные условия для получения льгот «Кафетерий»')
-button_kl_2_5 = KeyboardButton(text='Как сделать выбор льгот «Кафетерий»')
-button_kl_2_6 = KeyboardButton(text='Как открыть/внести изменения в личный кабинет «Кафетерий» сотрудника')
-button_kl_2_7 = KeyboardButton(text='Сколько баллов доступно работнику')
-button_kl_2_8 = KeyboardButton(text='Как зайти в личный кабинет')
-button_kl_2_9 = KeyboardButton(text='Перечень льгот «Кафетерий»')
-button_kl_2_10 = KeyboardButton(text='Когда осуществляется выбор льгот')
-button_kl_2_11 = KeyboardButton(text='Перенос баллов «Кафетерий» в текущем году')
-keyboard_KL_2 = ReplyKeyboardMarkup(keyboard=[[button_kl_2_1], [button_kl_2_2], [button_kl_2_3],
-                                             [button_kl_2_4], [button_kl_2_5], [button_kl_2_6],
-                                             [button_kl_2_7], [button_kl_2_8], [button_kl_2_9],
-                                             [button_kl_2_10], [button_kl_2_11],
+button_kl_2_1 = KeyboardButton(text='К кому обращаться с вопросами по блоку «Кафетерий льгот»')
+button_kl_2_2 = KeyboardButton(text='Период предоставления льгот «Кафетерий»')
+button_kl_2_3 = KeyboardButton(text='Кому доступен пакет льгот «Кафетерий»')
+button_kl_2_4 = KeyboardButton(text='Доступ/выбор для сотрудников, находящихся в отпуске по беременности и родам /уходу за ребенком')
+button_kl_2_5 = KeyboardButton(text='Обязательные условия для получения льгот «Кафетерий»')
+button_kl_2_6 = KeyboardButton(text='Как сделать выбор льгот «Кафетерий»')
+button_kl_2_7 = KeyboardButton(text='Как открыть/внести изменения в личный кабинет «Кафетерий» сотрудника')
+button_kl_2_8 = KeyboardButton(text='Сколько баллов доступно работнику')
+button_kl_2_9 = KeyboardButton(text='Как зайти в личный кабинет')
+button_kl_2_10 = KeyboardButton(text='Перечень льгот «Кафетерий»')
+button_kl_2_11 = KeyboardButton(text='Когда осуществляется выбор льгот')
+button_kl_2_12 = KeyboardButton(text='Перенос баллов «Кафетерий» в текущем году')
+keyboard_KL_2 = ReplyKeyboardMarkup(keyboard=[[button_kl_2_1], [button_kl_2_2],  [button_kl_2_3],
+                                             [button_kl_2_4],  [button_kl_2_5],  [button_kl_2_6],
+                                             [button_kl_2_7],  [button_kl_2_8],  [button_kl_2_9],
+                                             [button_kl_2_10], [button_kl_2_11], [button_kl_2_12],
                                              [btnKLB1], [btnKLB0]],
                                     input_field_placeholder=LEXICON_RU['placeholder'])
 
