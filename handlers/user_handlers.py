@@ -105,24 +105,40 @@ async def to_gik(message: types.Message): # GIK Общая информация 
     await message.answer(text=LEXICON_RU[message.text])
     logger.debug(f'Вышли из handler keyboard_KL_2 -> Общая информация «Кафетерий» (доступ, выбор льгот, условия) [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-
 #----- Получение льгот -> 13 кн. [2-й уровень] ----
 # KL кафетерий льгот 3_#
 # Хендлер для клавиатуры "Получение льгот"
 # TLK Take ligot kafeteriy Получение льгот Кафетерий
 @router.message(F.text == 'Получение льгот')
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
-    logger.debug(f'Вошли в handler Получение льгот =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    logger.debug(f'Вошли в handler Получение льгот [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
         text=LEXICON_RU[message.text],
         reply_markup=keyboard_KL_3,
     )
-    logger.debug(f'Вышли из handler Получение льгот =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    logger.debug(f'Вышли из handler Получение льгот [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-@router.message(F.text.in_({'Получение льгот',
-                            'Льгота «Оплата стоимости питания работников»',
-                            'Льгота «Оплата дополнительного образования работников»',
+@router.message(F.text.in_({'Получение льгот'}))
+async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    write_to_file_message('message.txt', message)
+    if F.text.in_('Льгота «Оплата стоимости питания работников» (фото)'):
+        print(1)
+        await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+    else:
+        print(2)
+        await message.answer(text=LEXICON_RU[message.text])
+    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+
+@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников» (фото)'}))
+async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    write_to_file_message('message.txt', message)
+    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+
+@router.message(F.text.in_({'Льгота «Оплата дополнительного образования работников»',
                             'Льгота «ДМС для работников»',
                             'Льгота «ДМС на ребенка»',
                             'Льгота «Оплата путевок работнику и членам его семьи»',
@@ -149,23 +165,10 @@ async def to_blanks_button(message: types.Message):
     )
     logger.debug(f'Вышли из handler Бланки заявлений, перечень клиник =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-
-@router.message(F.text.in_({'Заявления на льготу «ДМС работника» (фото)',
-                            'Заявления на льготу «ДМС дети до 18 (включительно) лет» (фото)',
-                            'Заявление на льготы: образование работника, детей, культ-масс (фото)',
-                            'Заполнение о переносе баллов (фото)',
-                            'Заявление на льготу «Материальная помощь к отпуску» (фото)',
-                            'Заявления на льготу «Путевки» (фото)'
-                            }))
-async def to_blanks_photo(message: types.Message):
-    logger.debug(f'Вошли в handler keyboard_KL_4 -> фото [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-    write_to_file_message('message.txt', message)
-    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
-    logger.debug(f'Вышли из handler keyboard_KL_4 -> фото [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-
-@router.message(F.text.in_({'ДМС для работников - cписок мед. учреждений (PDF)',
-                            'ДМС для детей работников - cписок мед. учреждений (PDF)',
-                            'Бланки одним файлом (PDF)',
+@router.message(F.text.in_({'Бланки заявлений (word)',
+                            'Бланки заявлений (pdf)',
+                            #'Информация о «Кафетерий льгот» одним файлом (word)',
+                            #'Информация о «Кафетерий льгот» одним файлом (pdf)',
                             }))
 async def to_blanks_pdf(message: types.Message):
     logger.debug(f'Вошли в handler keyboard_KL_4 -> pdf [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')

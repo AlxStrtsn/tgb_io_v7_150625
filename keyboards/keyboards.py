@@ -53,7 +53,7 @@ keyboard_KL_2 = ReplyKeyboardMarkup(keyboard=[[button_kl_2_1], [button_kl_2_2], 
 
 #----- Получение льгот -> 13 кн. [2-й уровень]  от 2-й кнопки----
 # KL кафетерий льгот 3_#
-button_kl_3_1 = KeyboardButton(text='Льгота «Оплата стоимости питания работников»')
+button_kl_3_1 = KeyboardButton(text='Льгота «Оплата стоимости питания работников» (фото)')
 button_kl_3_2 = KeyboardButton(text='Льгота «Оплата дополнительного образования работников»')
 button_kl_3_3 = KeyboardButton(text='Льгота «ДМС для работников»')
 button_kl_3_4 = KeyboardButton(text='Льгота «ДМС на ребенка»')
@@ -73,20 +73,15 @@ keyboard_KL_3 = ReplyKeyboardMarkup(keyboard=[[button_kl_3_1], [button_kl_3_2], 
 
 #----- #btnKL3 Бланки заявлений, перечень клиник [2-й уровень] от 3-й кнопки ----
 # KL кафетерий льгот 4_#
-button_kl_4_1 = KeyboardButton(text='Заявления на льготу «ДМС работника» (фото)')
-button_kl_4_2 = KeyboardButton(text='Заявления на льготу «ДМС дети до 18 (включительно) лет» (фото)')
-button_kl_4_3 = KeyboardButton(text='Заявление на льготы: образование работника, детей, культ-масс (фото)')
-button_kl_4_4 = KeyboardButton(text='Заполнение о переносе баллов (фото)')
-button_kl_4_5 = KeyboardButton(text='Заявление на льготу «Материальная помощь к отпуску» (фото)')
-button_kl_4_6 = KeyboardButton(text='Заявления на льготу «Путевки» (фото)')
-button_kl_4_7 = KeyboardButton(text='ДМС для работников - cписок мед. учреждений (PDF)')
-button_kl_4_8 = KeyboardButton(text='ДМС для детей работников - cписок мед. учреждений (PDF)')
-button_kl_4_9 = KeyboardButton(text='Бланки одним файлом (PDF)')
-keyboard_KL_4 = ReplyKeyboardMarkup(keyboard=[[button_kl_4_1], [button_kl_4_2], [button_kl_4_3],
-                                             [button_kl_4_4], [button_kl_4_5], [button_kl_4_6],
-                                             [button_kl_4_7], [button_kl_4_8], [button_kl_4_9],
-                                             [btnKLB1], [btnKLB0]],
-                                    input_field_placeholder=LEXICON_RU['placeholder'])
+button_kl_4_1 = KeyboardButton(text='Бланки заявлений (word)')
+button_kl_4_2 = KeyboardButton(text='Бланки заявлений (pdf)')
+#button_kl_4_3 = KeyboardButton(text='Информация о «Кафетерий льгот» одним файлом (word)')
+#button_kl_4_4 = KeyboardButton(text='Информация о «Кафетерий льгот» одним файлом (pdf)')
+keyboard_KL_4 = ReplyKeyboardMarkup(keyboard=[[button_kl_4_1], [button_kl_4_2], [btnKLB1], [btnKLB0]
+                                               # ,[button_kl_4_3], [button_kl_4_4],
+                                              ],
+                                    input_field_placeholder=LEXICON_RU['placeholder'],
+                                    resize_keyboard=True)
 
 
 # Buttons back

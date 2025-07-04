@@ -12,7 +12,7 @@ def write_to_file_message(path: str, message):
 def write_to_file_testtext(path: str, message):
     f: TextIOWrapper
     try:
-        f = open(path, 'a')
+        f = open(path, 'a', encoding='utf-8')
         print(f'date{message.date}\t'
               f'message_id:\t{message.message_id}\t'
               f'chat_id:\t{message.chat.id}\t'
