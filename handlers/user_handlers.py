@@ -2,7 +2,7 @@ import logging
 from aiogram import F, Router, types
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
-from keyboards.keyboards import keyboard_GM_0, keyboard_KL_1, keyboard_KL_2, keyboard_KL_3, keyboard_KL_4
+from keyboards.keyboards import keyboard_GM_0, keyboard_KL_1, keyboard_KL_2, keyboard_KL_3, keyboard_KL_4, keyboard_KL_3_1
 from lexicon.lexicon_ru import LEXICON_RU
 from to_files.to_files import write_to_file_message, write_to_file_testtext # подключение процедуры записи в файл
 
@@ -123,22 +123,57 @@ async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получ�
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
     logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
-    if F.text.in_('Льгота «Оплата стоимости питания работников» (фото)'):
-        print(1)
-        await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
-    else:
-        print(2)
-        await message.answer(text=LEXICON_RU[message.text])
+#    if F.text.in_('Льгота «Оплата стоимости питания работников» (фото)'):
+#        print(1)
+#        await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+#    else:
+#        print(2)
+    await message.answer(text=LEXICON_RU[message.text])
     logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников» (фото)'}))
+#@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников» (фото)'}))
+#async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+#    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+#    write_to_file_message('message.txt', message)
+#    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+#    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+
+
+
+#3_1_#
+@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников»'}))
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
-    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    logger.debug(f'Вошли в handler keyboard_KL_3_1 -> Получение льготы «Оплата стоимости питания работников» -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
-    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
-    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    await message.answer(
+        text=LEXICON_RU[message.text],
+        reply_markup = keyboard_KL_3_1
+    )
+    logger.debug(f'Вышли из handler keyboard_KL_3_1 -> Получение льготы «Оплата стоимости питания работников» -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-@router.message(F.text.in_({'Льгота «Оплата дополнительного образования работников»',
+@router.message(F.text.in_({'Доступно баллов',
+                            'Период предоставления льготы',
+                            'Механизм предоставления льготы',
+                            'Важная информация о картах питания',
+                            'Механизм оформления карты питания',
+                            'Варианты получения готовой карты питания на руки',
+                            'При утере/поломки карты действия сотрудника'
+                            }))
+async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
+    logger.debug(f'Вошли в handler keyboard_KL_3_1 -> Получение льготы «Оплата стоимости питания работников» =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+    write_to_file_message('message.txt', message)
+    await message.answer(text=LEXICON_RU[message.text])
+    logger.debug(f'Вышли из handler keyboard_KL_3_1 -> Получение льготы «Оплата стоимости питания работников» =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+
+
+
+
+
+
+
+
+@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников»',
+                            'Льгота «Оплата дополнительного образования работников»',
                             'Льгота «ДМС для работников»',
                             'Льгота «ДМС на ребенка»',
                             'Льгота «Оплата путевок работнику и членам его семьи»',
@@ -154,6 +189,7 @@ async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получ�
     write_to_file_message('message.txt', message)
     await message.answer(text=LEXICON_RU[message.text])
     logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
+
 
 @router.message(F.text.in_({'Бланки заявлений, перечень клиник'}))
 async def to_blanks_button(message: types.Message):

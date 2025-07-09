@@ -53,7 +53,7 @@ keyboard_KL_2 = ReplyKeyboardMarkup(keyboard=[[button_kl_2_1], [button_kl_2_2], 
 
 #----- Получение льгот -> 13 кн. [2-й уровень]  от 2-й кнопки----
 # KL кафетерий льгот 3_#
-button_kl_3_1 = KeyboardButton(text='Льгота «Оплата стоимости питания работников» (фото)')
+button_kl_3_1 = KeyboardButton(text='Льгота «Оплата стоимости питания работников»')
 button_kl_3_2 = KeyboardButton(text='Льгота «Оплата дополнительного образования работников»')
 button_kl_3_3 = KeyboardButton(text='Льгота «ДМС для работников»')
 button_kl_3_4 = KeyboardButton(text='Льгота «ДМС на ребенка»')
@@ -70,6 +70,18 @@ keyboard_KL_3 = ReplyKeyboardMarkup(keyboard=[[button_kl_3_1], [button_kl_3_2], 
                                              [button_kl_3_10], [button_kl_3_11],
                                              [btnKLB1], [btnKLB0]],
                                     input_field_placeholder=LEXICON_RU['placeholder'])
+
+#button_kl_3_1 Льгота «Оплата стоимости питания работников» = 3_1_#
+button_kl_3_1_1 = KeyboardButton(text='Доступно баллов')
+button_kl_3_1_2 = KeyboardButton(text='Период предоставления льготы')
+button_kl_3_1_3 = KeyboardButton(text='Важная информация о картах питания')
+button_kl_3_1_4 = KeyboardButton(text='Механизм оформления карты питания')
+button_kl_3_1_5 = KeyboardButton(text='Варианты получения готовой карты питания на руки')
+button_kl_3_1_6 = KeyboardButton(text='При утере/поломки карты действия сотрудника')
+keyboard_KL_3_1 = ReplyKeyboardMarkup(keyboard=[[button_kl_3_1_1], [button_kl_3_1_2], [button_kl_3_1_3],
+                                                [button_kl_3_1_4], [button_kl_3_1_5], [button_kl_3_1_6],
+                                                [btnKLB1], [btnKLB0]],
+                                      input_field_placeholder=LEXICON_RU['placeholder'])
 
 #----- #btnKL3 Бланки заявлений, перечень клиник [2-й уровень] от 3-й кнопки ----
 # KL кафетерий льгот 4_#
