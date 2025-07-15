@@ -4,6 +4,8 @@ from lexicon.lexicon_ru import LEXICON_RU
 # Buttons back
 btnKLB0 = KeyboardButton(text=LEXICON_RU['btnKLB0'])
 btnKLB1 = KeyboardButton(text=LEXICON_RU['btnKLB1'])
+btnKLB2 = KeyboardButton(text=LEXICON_RU['btnKLB2']) #Для возврата из Питания
+
 
 # Создаём объекты кнопок. Кнопки главных кнопок. GM GeneralMenu
 button_GM_0_1 = KeyboardButton(text='Кафетерий льгот')  #0_1
@@ -80,15 +82,13 @@ button_kl_3_1_5 = KeyboardButton(text='Варианты получения го�
 button_kl_3_1_6 = KeyboardButton(text='При утере/поломки карты действия сотрудника')
 keyboard_KL_3_1 = ReplyKeyboardMarkup(keyboard=[[button_kl_3_1_1], [button_kl_3_1_2], [button_kl_3_1_3],
                                                 [button_kl_3_1_4], [button_kl_3_1_5], [button_kl_3_1_6],
-                                                [btnKLB1], [btnKLB0]],
+                                                [btnKLB2], [btnKLB1], [btnKLB0]],
                                       input_field_placeholder=LEXICON_RU['placeholder'])
 
 #----- #btnKL3 Бланки заявлений, перечень клиник [2-й уровень] от 3-й кнопки ----
 # KL кафетерий льгот 4_#
 button_kl_4_1 = KeyboardButton(text='Бланки заявлений (word)')
 button_kl_4_2 = KeyboardButton(text='Бланки заявлений (pdf)')
-#button_kl_4_3 = KeyboardButton(text='Информация о «Кафетерий льгот» одним файлом (word)')
-#button_kl_4_4 = KeyboardButton(text='Информация о «Кафетерий льгот» одним файлом (pdf)')
 keyboard_KL_4 = ReplyKeyboardMarkup(keyboard=[[button_kl_4_1], [button_kl_4_2], [btnKLB1], [btnKLB0]
                                                # ,[button_kl_4_3], [button_kl_4_4],
                                               ],

@@ -16,7 +16,8 @@ async def start_command(message: Message):
     logger.debug(f'Вошли в handler start =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
-        text = f'<b>Здравствуйте, {message.chat.first_name} ({message.chat.username})! </b>, \n'
+#        text = f'<b>Здравствуйте, {message.chat.first_name} ({message.chat.username})! </b>, \n'
+         text='<b>Здравствуйте!</b> \n'
                f'\n'
                f'Выберите, что вас интересует. \n\nСмотрите кнопки ниже.',
         reply_markup=keyboard_GM_0
@@ -53,12 +54,12 @@ async def to_test(message: types.Message):
 # Этот хендлер будет срабатывать на кнопки Кафетерий льгот и
 # вернуться в меню «Кафетерий» льгот (предыдущая страница)
 @router.message(F.text.in_({'Кафетерий льгот',
-                        '<- Вернуться в меню «Кафетерий» льгот (предыдущая страница)'}))
+                        '<< Вернуться в меню «Кафетерий» льгот'}))
 async def to_kl(message: Message):
     logger.debug(f'Вошли в handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
     await message.answer(
-        text='Кафетерий льгот',
+        text='<b>Кафетерий льгот</b>',
         reply_markup=keyboard_KL_1
     )
     logger.debug(f'Вышли из handler Кафетерий льгот или Вернуться в меню «Кафетерий» льгот (предыдущая страница) =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
@@ -109,7 +110,8 @@ async def to_gik(message: types.Message): # GIK Общая информация 
 # KL кафетерий льгот 3_#
 # Хендлер для клавиатуры "Получение льгот"
 # TLK Take ligot kafeteriy Получение льгот Кафетерий
-@router.message(F.text == 'Получение льгот')
+@router.message(F.text.in_({'Получение льгот',
+                            '< Вернуться в меню «Получение льгот» (предыдущая страница)'}))
 async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
     logger.debug(f'Вошли в handler Получение льгот [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
     write_to_file_message('message.txt', message)
@@ -119,25 +121,13 @@ async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получ�
     )
     logger.debug(f'Вышли из handler Получение льгот [...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 
-@router.message(F.text.in_({'Получение льгот'}))
-async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
-    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-    write_to_file_message('message.txt', message)
-#    if F.text.in_('Льгота «Оплата стоимости питания работников» (фото)'):
-#        print(1)
-#        await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
-#    else:
-#        print(2)
-    await message.answer(text=LEXICON_RU[message.text])
-    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-
-#@router.message(F.text.in_({'Льгота «Оплата стоимости питания работников» (фото)'}))
+#@router.message(F.text.in_({'Получение льгот',
+#                            '< Вернуться в меню «Получение льгот» (предыдущая страница)'}))
 #async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получение льгот Кафетерий
 #    logger.debug(f'Вошли в handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
 #    write_to_file_message('message.txt', message)
-#    await message.answer_photo(photo=types.FSInputFile(LEXICON_RU[message.text]))
+#    await message.answer(text=LEXICON_RU[message.text])
 #    logger.debug(f'Вышли из handler keyboard_KL_3 -> Получение льгот -> [список...] =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-
 
 
 #3_1_#
@@ -164,12 +154,6 @@ async def to_tlk(message: types.Message): # TLK Take ligot kafeteriy Получ�
     write_to_file_message('message.txt', message)
     await message.answer(text=LEXICON_RU[message.text])
     logger.debug(f'Вышли из handler keyboard_KL_3_1 -> Получение льготы «Оплата стоимости питания работников» =>\tmessage_id:\t{message.message_id}\tchat_id:\t{message.chat.id}\tusername:\t{message.chat.username}\tfirst_name:\t{message.chat.first_name}\tlast_name:\t{message.chat.last_name}\ttext:\t{message.text}')
-
-
-
-
-
-
 
 
 @router.message(F.text.in_({'Льгота «Оплата стоимости питания работников»',
